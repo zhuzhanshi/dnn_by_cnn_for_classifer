@@ -115,14 +115,13 @@ class One_convenlution_net:
 
     def train(self):
         TRAIN_SET_NAME = FLAGS.set_name
-        train_file_path = os.path.join(FLAGS.data_dir, TRAIN_SET_NAME)
+        train_file_path = os.path.abspath('.') + '/' + os.path.join(FLAGS.data_dir, TRAIN_SET_NAME)
         train_image_filename_queue = tf.train.string_input_producer(
-            [os.path.abspath('.') + train_file_path], num_epochs=None, shuffle=True
+            [train_file_path], num_epochs=None, shuffle=True
         )
 
-        CHECK_POINT_PATH = os.path.join(FLAGS.model_dir, FLAGS.check_point)
-
-        ckpt_path = os.path.abspath('.') + CHECK_POINT_PATH
+        ckpt_path = os.path.abspath('.') + '/' + os.path.join(FLAGS.model_dir, FLAGS.check_point)
+  
         batch_size = self.batch_size
         train_images, train_labels = self.read_image_batch(train_image_filename_queue, batch_size)
 
@@ -134,14 +133,15 @@ class One_convenlution_net:
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
             sess.run(tf.local_variables_initializer())
-            tb_dir = os.path.abspath('.')
-            tb_dir = tb_dir + FLAGS.tb_dir
+            tb_dir = os.path.abspath('.') + '/' + FLAGS.tb_dir
+ 
             summary_writer = tf.summary.FileWriter(tb_dir, sess.graph)
             coord = tf.train.Coordinator()
             threads = tf.train.start_queue_runners(coord=coord)
             all_parameters_saver.restore(sess, ckpt_path)
             try:
                 epoch = 1
+                print(epoch)
                 while not coord.should_stop():
                     image, label = sess.run([train_images, train_labels])
                     loss,acc, summary_str = sess.run(
@@ -175,14 +175,13 @@ class One_convenlution_net:
     
     def eval(self):
         EVAL_SET_NAME = FLAGS.set_name
-        eval_file_path = os.path.join(FLAGS.data_dir, EVAL_SET_NAME)
+        eval_file_path = os.path.abspath('.') + '/' + os.path.join(FLAGS.data_dir, EVAL_SET_NAME)
         eval_image_filename_queue = tf.train.string_input_producer(
-            [os.path.abspath('.') + eval_file_path], num_epochs=None, shuffle=None
+            [eval_file_path], num_epochs=None, shuffle=None
         )
 
-        CHECK_POINT_PATH = os.path.join(FLAGS.model_dir, FLAGS.check_point)
+        ckpt_path = os.path.abspath('.') + '/' + os.path.join(FLAGS.model_dir, FLAGS.check_point)
 
-        ckpt_path = os.path.abspath('.') + CHECK_POINT_PATH
         batch_size = self.batch_size
         eval_images, eval_labels = self.read_image_batch(eval_image_filename_queue, batch_size)
 

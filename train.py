@@ -12,17 +12,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
       '--data_dir',
-      default='/data_set',
+      default='data_set',
       type=str,
     )
     parser.add_argument(
       '--model_dir',
-      default='/save_models',
+      default='save_models',
       type=str,
     )
     parser.add_argument(
       '--tb_dir',
-      default='/logs',
+      default='logs',
       type=str,
     )
     parser.add_argument(
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
       '--set_name',
-      default='data.tfrecord',
+      default='train.tfrecord',
       type=str,
     )
     parser.add_argument(

@@ -12,17 +12,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
       '--data_dir',
-      default='/data_set',
+      default='data_set',
       type=str,
     )
     parser.add_argument(
       '--model_dir',
-      default='/save_models',
+      default='save_models',
       type=str,
     )
     parser.add_argument(
       '--tb_dir',
-      default='/logs',
+      default='logs',
       type=str,
     )
     parser.add_argument(
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     FLAGS.data_dir = parser.parse_known_args()[0].data_dir
     FLAGS.batch_size  = parser.parse_known_args()[0].batch_size
     FLAGS.model_dir = parser.parse_known_args()[0].model_dir
-    FLAGS.tb_dir = parser.parse_known_args()[0].tb_dir
+    #FLAGS.tb_dir = parser.parse_known_args()[0].tb_dir
     FLAGS.set_name = parser.parse_known_args()[0].set_name
     FLAGS.check_point = parser.parse_known_args()[0].check_point
 
