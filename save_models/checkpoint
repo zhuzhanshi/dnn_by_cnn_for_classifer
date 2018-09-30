@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/zhuzhanshi/Desktop/one_step_classify/save_models/model.ckpt"
+all_model_checkpoint_paths: "/home/zhuzhanshi/Desktop/one_step_classify/save_models/model.ckpt"
