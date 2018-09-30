@@ -3,7 +3,9 @@
 ### 生成tfrecord文件
 
 python conver_tfrecord.py --data_dir data/train/ --data_name train.tfrecord
+
 python conver_tfrecord.py --data_dir data/validation/ --data_name val.tfrecord
+
 将三个文件放在 data_set下 
 
 ### 训练模型
